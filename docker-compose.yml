@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+   slave:
+      image: xinzhouliu/centos:slave   
+      networks:
+         - test
+      deploy:
+         replicas: 2
+      
+   master:
+      image: xinzhouliu/centos:master
+      networks:
+         - test
+      deploy:
+         replicas: 1
+      depends_on:
+         - slave
+
+networks:
+   test:
